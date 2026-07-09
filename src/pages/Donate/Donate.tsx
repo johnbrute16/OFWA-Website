@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, CreditCard, Send, Plus, Minus } from 'lucide-react';
+import { Heart, Plus, Minus } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './Donate.module.css';
 

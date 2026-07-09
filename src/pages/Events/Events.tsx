@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar, MapPin, Heart } from 'lucide-react';
+import { ArrowRight, MapPin, Heart } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './Events.module.css';
 
