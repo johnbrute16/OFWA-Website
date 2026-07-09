@@ -1,0 +1,66 @@
+.floatDonate {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--orange-gradient);
+  color: var(--black) !important;
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 800;
+  padding: 14px 24px;
+  border-radius: 100px;
+  box-shadow: 0 8px 24px rgba(255, 159, 67, 0.4);
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floatDonate:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 159, 67, 0.6);
+  filter: brightness(1.05);
+}
+
+.floatDonate:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.heartIcon {
+  animation: beat 1.5s ease-in-out infinite;
+}
+
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  40% {
+    transform: scale(1.05);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+}
+
+@media (max-width: 480px) {
+  .floatDonate {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    font-size: 0.82rem;
+  }
+}
