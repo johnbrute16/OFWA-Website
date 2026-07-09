@@ -29,15 +29,6 @@ export const Navbar: React.FC = () => {
           </span>
         </NavLink>
 
-        <button 
-          className={styles.navToggle} 
-          onClick={toggleMenu} 
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
         <ul className={`${styles.navMenu} ${isOpen ? styles.menuOpen : ''}`} role="list">
           <li>
             <NavLink 
