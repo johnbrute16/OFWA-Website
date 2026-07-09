@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Play, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { VideoModal } from '../../components/VideoModal/VideoModal';
@@ -129,6 +129,18 @@ const Home: React.FC = () => {
   const selectHub = (i: number) => {
     setHubIdx(i);
     setLoadedMaps(prev => new Set(prev).add(i));
+  };
+
+  // Events horizontal scroll ref
+  const eventsScrollRef = useRef<HTMLDivElement>(null);
+  const scrollEvents = (direction: 'left' | 'right') => {
+    if (eventsScrollRef.current) {
+      const scrollAmount = 320; // 300px card width + 20px gap
+      eventsScrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (
@@ -368,22 +380,26 @@ const Home: React.FC = () => {
             </div>
             <Link className="btn-ghost reveal d2" to="/events">All Events <ArrowRight size={14} /></Link>
           </div>
-          <div className={styles.eventsScrollWrap}>
-            <div className={`${styles.eventsRow} reveal`}>
-              {events.map((ev, i) => (
-                <div key={i} className={styles.eventCardH}>
-                  <div className={styles.eventCardHImg}>
-                    <img src={ev.img} alt={ev.title} />
-                    <span className={styles.eventDatePill}>{ev.date}</span>
+          <div className={styles.eventsContainer}>
+            <button className={`${styles.eventsArrow} ${styles.eventsArrowLeft}`} onClick={() => scrollEvents('left')} aria-label="Scroll left"><ChevronLeft size={24} /></button>
+            <div ref={eventsScrollRef} className={styles.eventsScrollWrap}>
+              <div className={`${styles.eventsRow} reveal`}>
+                {events.map((ev, i) => (
+                  <div key={i} className={styles.eventCardH}>
+                    <div className={styles.eventCardHImg}>
+                      <img src={ev.img} alt={ev.title} />
+                      <span className={styles.eventDatePill}>{ev.date}</span>
+                    </div>
+                    <div className={styles.eventCardHBody}>
+                      <h3 className={styles.eventCardHTitle}>{ev.title}</h3>
+                      <p className={styles.eventCardHMeta}>{ev.meta}</p>
+                    </div>
+                    <Link className={styles.eventCardHCta} to="/events">Register Now</Link>
                   </div>
-                  <div className={styles.eventCardHBody}>
-                    <h3 className={styles.eventCardHTitle}>{ev.title}</h3>
-                    <p className={styles.eventCardHMeta}>{ev.meta}</p>
-                  </div>
-                  <Link className={styles.eventCardHCta} to="/events">Register Now</Link>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            <button className={`${styles.eventsArrow} ${styles.eventsArrowRight}`} onClick={() => scrollEvents('right')} aria-label="Scroll right"><ChevronRight size={24} /></button>
           </div>
         </div>
       </section>

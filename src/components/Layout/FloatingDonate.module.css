@@ -42,15 +42,20 @@
 }
 
 @keyframes beat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   25% {
     transform: scale(1.15);
   }
+
   40% {
     transform: scale(1.05);
   }
+
   60% {
     transform: scale(1.2);
   }

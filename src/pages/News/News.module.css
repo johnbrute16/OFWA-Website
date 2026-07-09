@@ -64,7 +64,6 @@
   overflow: hidden;
   aspect-ratio: 16/10;
   box-shadow: var(--shadow-md);
-  height: 100%;
 }
 
 .featuredImg img {

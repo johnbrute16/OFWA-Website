@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navbar } from '../Navbar/Navbar';
 import { Footer } from '../Footer/Footer';
-import { FloatingDonate } from './FloatingDonate';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,7 +21,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main style={{ paddingTop: 'var(--nav-h)', minHeight: 'calc(100vh - 350px)' }}>
         {children}
       </main>
-      <FloatingDonate />
+      {/*<FloatingDonate />*/}
       <Footer />
     </>
   );
