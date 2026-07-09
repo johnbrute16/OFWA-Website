@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ formspreeId = '' }) => {
         } else {
           setStatus('error');
         }
-      } catch (err) {
+      } catch {
         setStatus('error');
       }
     } else {

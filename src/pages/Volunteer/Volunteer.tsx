@@ -74,7 +74,7 @@ const Volunteer: React.FC = () => {
         } else {
           setStatus('error');
         }
-      } catch (err) {
+      } catch {
         setStatus('error');
       }
     } else {

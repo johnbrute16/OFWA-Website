@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Lightbox.module.css';
 
@@ -24,6 +24,22 @@ export const Lightbox: React.FC<LightboxProps> = ({
 }) => {
   const [fade, setFade] = useState(false);
 
+  const triggerPrev = useCallback(() => {
+    setFade(true);
+    setTimeout(() => {
+      onPrev();
+      setFade(false);
+    }, 120);
+  }, [onPrev]);
+
+  const triggerNext = useCallback(() => {
+    setFade(true);
+    setTimeout(() => {
+      onNext();
+      setFade(false);
+    }, 120);
+  }, [onNext]);
+
   useEffect(() => {
     if (currentIndex === -1) return;
 
@@ -40,27 +56,11 @@ export const Lightbox: React.FC<LightboxProps> = ({
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [currentIndex, onClose, onPrev, onNext]);
+  }, [currentIndex, onClose, triggerPrev, triggerNext]);
 
   if (currentIndex === -1 || images.length === 0) return null;
 
   const currentImage = images[currentIndex];
-
-  const triggerPrev = () => {
-    setFade(true);
-    setTimeout(() => {
-      onPrev();
-      setFade(false);
-    }, 120);
-  };
-
-  const triggerNext = () => {
-    setFade(true);
-    setTimeout(() => {
-      onNext();
-      setFade(false);
-    }, 120);
-  };
 
   return (
     <div 

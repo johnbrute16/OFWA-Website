@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useScrollReveal = (dependency?: any) => {
+export const useScrollReveal = (dependency?: unknown) => {
   useEffect(() => {
     const els = document.querySelectorAll('.reveal');
     if (!els.length) return;

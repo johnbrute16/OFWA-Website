@@ -85,7 +85,7 @@ const Partner: React.FC = () => {
         } else {
           setStatus('error');
         }
-      } catch (err) {
+      } catch {
         setStatus('error');
       }
     } else {
