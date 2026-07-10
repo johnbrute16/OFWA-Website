@@ -90,25 +90,81 @@ const filters = [
   { label: 'Community', value: 'community' },
 ];
 
-const Gallery: React.FC = () => {
-  const [campaignGallery, setCampaignGallery] = useState([])
-  // const [eventsGallery, setEventsGallery] = useState([])
-  // const [hubsGallery, setHubsGallery] = useState([])
-  // const [trainingGallery, setTrainingGallery] = useState([])
-  // const [communityGallery, setCommunityGallery] = useState([])
+interface DriveFile {
+  id: string;
+  name: string;
+}
 
+interface GalleryCard {
+  full: string;
+  alt: string;
+  cat: string;
+  categories: string[];
+}
+
+const Gallery: React.FC = () => {
+  const [galleryItems, setGalleryItems] = useState<GalleryCard[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useScrollReveal();
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIdx, setLightboxIdx] = useState(-1);
 
-  const filteredCards = galleryCards.filter((card) => {
+  // Fetch images from all Google Drive folders in parallel
+  useEffect(() => {
+    const fetchAllImages = async () => {
+      setIsLoading(true);
+      const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+      const folders = [
+        { id: import.meta.env.VITE_CAMPAIGN_FOLDER, cat: 'Campaigns', tag: 'campaigns' },
+        { id: import.meta.env.VITE_COMMUNITY_FOLDER, cat: 'Community', tag: 'community' },
+        { id: import.meta.env.VITE_EVENTS_FOLDER, cat: 'Events', tag: 'events' },
+        { id: import.meta.env.VITE_HUBS_FOLDER, cat: 'Hubs', tag: 'hubs' },
+        { id: import.meta.env.VITE_TRAINING_FOLDER, cat: 'Training', tag: 'training' },
+      ];
+
+      try {
+        const promises = folders.map(async (folder) => {
+          if (!folder.id || !apiKey) return [];
+          const query = encodeURIComponent(`'${folder.id}' in parents and mimeType starts with 'image/' and trashed = false`);
+          const url = `https://www.googleapis.com/drive/v3/files?q=${query}&fields=files(id,name)&key=${apiKey}`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            console.warn(`Failed to fetch images for folder ${folder.cat}: ${response.statusText}`);
+            return [];
+          }
+          const data = await response.json();
+          const files: DriveFile[] = data.files || [];
+          
+          return files.map((file) => ({
+            full: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`,
+            alt: file.name.split('.')[0] || file.name,
+            cat: folder.cat,
+            categories: [folder.tag],
+          }));
+        });
+
+        const results = await Promise.all(promises);
+        const combined = results.flat();
+        setGalleryItems(combined);
+      } catch (error) {
+        console.error('Error fetching images from Google Drive:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAllImages();
+  }, []);
+
+  const displayCards = galleryItems.length > 0 ? galleryItems : galleryCards;
+
+  const filteredCards = displayCards.filter((card) => {
     if (activeFilter === 'all') return true;
     return card.categories.includes(activeFilter);
   });
 
   const openLightbox = (cardIndex: number) => {
-    // Find index in the filtered cards list to support slideshow sequencing
     setLightboxIdx(cardIndex);
   };
 
@@ -119,33 +175,6 @@ const Gallery: React.FC = () => {
   const handleNext = () => {
     setLightboxIdx((prev) => (prev + 1) % filteredCards.length);
   };
-
-
-
-  //fetch images from google drive
-  useEffect(() => {
-    const fetchCampaignImages = async () => {
-      try {
-        const response = await fetch(`https://www.googleapis.com/drive/v3/files?q='${import.meta.env.VITE_CAMPAIGN_FOLDER}'+in+parents&fields=files(id,name,mimeType)&key=${import.meta.env.VITE_GOOGLE_API_KEY}`);
-        const data = await response.json();
-        setCampaignGallery(data.files)
-        // console.log(campaignGallery);
-      } catch (error) {
-        console.error('Error fetching images:', error);
-      } finally {
-      }
-    };
-    fetchCampaignImages();
-  }, [])
-
-
-  const newCampaignGallery = campaignGallery.map((image) => ({
-    full: `https://drive.google.com/thumbnail?id=${image.id}&sz=w1000 `,
-    alt: image.name,
-    cat: 'Campaigns',
-    categories: ['campaigns'],
-  }))
-  console.log(newCampaignGallery);
 
   return (
     <>
@@ -185,54 +214,42 @@ const Gallery: React.FC = () => {
           </div>
 
           <div className={`${styles.galleryGrid} reveal d1`}>
-            {/* {filteredCards.map((card, i) => (
-              <div
-                key={i}
-                className={styles.galleryCard}
-                onClick={() => openLightbox(i)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && openLightbox(i)}
-                aria-label={`Open lightbox for ${card.alt}`}
-              >
-                <div className={styles.galleryCardImgWrap}>
-                  <img src={card.full} alt={card.alt} loading="lazy" />
-                  <div className={styles.galleryCardOverlay}>
-                    <span className={styles.galleryCardZoomIcon}>
-                      <ZoomIn size={24} />
-                    </span>
+            {isLoading && galleryItems.length === 0 ? (
+              Array.from({ length: 8 }).map((_, idx) => (
+                <div key={`skeleton-${idx}`} className={styles.skeletonCard}>
+                  <div className={styles.skeletonImg} />
+                  <div className={styles.skeletonInfo}>
+                    <div className={styles.skeletonTag} />
+                    <div className={styles.skeletonTitle} />
                   </div>
                 </div>
-                <div className={styles.galleryCardInfo}>
-                  <span className={styles.galleryCardTag}>{card.cat}</span>
-                  <h3 className={styles.galleryCardTitle}>{card.alt}</h3>
-                </div>
-              </div>
-            ))} */}
-            {newCampaignGallery.map((image, idx) => (
-              <div
-                key={idx}
-                className={styles.galleryCard}
-                onClick={() => openLightbox(idx)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && openLightbox(idx)}
-                aria-label={`Open lightbox for ${image.alt}`}
-              >
-                <div className={styles.galleryCardImgWrap}>
-                  <img src={image.full} alt={image.alt} loading="lazy" />
-                  <div className={styles.galleryCardOverlay}>
-                    <span className={styles.galleryCardZoomIcon}>
-                      <ZoomIn size={24} />
-                    </span>
+              ))
+            ) : (
+              filteredCards.map((card, i) => (
+                <div
+                  key={i}
+                  className={styles.galleryCard}
+                  onClick={() => openLightbox(i)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && openLightbox(i)}
+                  aria-label={`Open lightbox for ${card.alt}`}
+                >
+                  <div className={styles.galleryCardImgWrap}>
+                    <img src={card.full} alt={card.alt} loading="lazy" />
+                    <div className={styles.galleryCardOverlay}>
+                      <span className={styles.galleryCardZoomIcon}>
+                        <ZoomIn size={24} />
+                      </span>
+                    </div>
+                  </div>
+                  <div className={styles.galleryCardInfo}>
+                    <span className={styles.galleryCardTag}>{card.cat}</span>
+                    <h3 className={styles.galleryCardTitle}>{card.alt}</h3>
                   </div>
                 </div>
-                <div className={styles.galleryCardInfo}>
-                  <span className={styles.galleryCardTag}>{image.cat}</span>
-                  <h3 className={styles.galleryCardTitle}>{image.alt}</h3>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
