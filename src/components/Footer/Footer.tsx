@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Heart, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Heart } from 'lucide-react';
 import styles from './Footer.module.css';
 
 interface FooterProps {
   formspreeId?: string; // e.g. "xpzoqarg"
 }
 
-export const Footer: React.FC<FooterProps> = ({ formspreeId = '' }) => {
-  const [email, setEmail] = useState('');
-  const [consent, setConsent] = useState(false);
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+export const Footer: React.FC<FooterProps> = () => {
+  // const [email, setEmail] = useState('');
+  // const [consent, setConsent] = useState(false);
+  // const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!consent) return;
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!consent) return;
 
-    setStatus('submitting');
+  //   setStatus('submitting');
 
-    if (formspreeId) {
-      try {
-        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        if (response.ok) {
-          setStatus('success');
-          setEmail('');
-          setConsent(false);
-        } else {
-          setStatus('error');
-        }
-      } catch {
-        setStatus('error');
-      }
-    } else {
-      // Mock API delay
-      setTimeout(() => {
-        setStatus('success');
-        setEmail('');
-        setConsent(false);
-        setTimeout(() => setStatus('idle'), 3500);
-      }, 1200);
-    }
-  };
+  //   if (formspreeId) {
+  //     try {
+  //       const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ email }),
+  //       });
+  //       if (response.ok) {
+  //         setStatus('success');
+  //         setEmail('');
+  //         setConsent(false);
+  //       } else {
+  //         setStatus('error');
+  //       }
+  //     } catch {
+  //       setStatus('error');
+  //     }
+  //   } else {
+  //     // Mock API delay
+  //     setTimeout(() => {
+  //       setStatus('success');
+  //       setEmail('');
+  //       setConsent(false);
+  //       setTimeout(() => setStatus('idle'), 3500);
+  //     }, 1200);
+  //   }
+  // };
 
   const currentYear = new Date().getFullYear();
 
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ formspreeId = '' }) => {
         <div className={styles.brandCol}>
           <img className={styles.footerLogo} src="/assets/images/ofwa-logo-new.png" alt="OFWA" />
           <h3 className={styles.footerName}>Open Foundation West Africa</h3>
-          
+
           <div className={styles.contactList}>
             <div className={styles.contactItem}>
               <MapPin size={16} className={styles.contactIcon} />
@@ -109,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ formspreeId = '' }) => {
         </div>
       </div>
 
-      <div className={styles.newsletterBand}>
+      {/* <div className={styles.newsletterBand}>
         <div className={`container ${styles.newsletterInner}`}>
           <div className={styles.newsletterText}>
             <h3>Stay in the Loop</h3>
@@ -161,7 +161,7 @@ export const Footer: React.FC<FooterProps> = ({ formspreeId = '' }) => {
             )}
           </form>
         </div>
-      </div>
+      </div> */}
 
       <div className={`container ${styles.footerBottom}`}>
         <p>© {currentYear} Open Foundation West Africa. All rights reserved. · Built for open knowledge.</p>

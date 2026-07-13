@@ -1,6 +1,6 @@
 /* ═══ Page Hero (shared pattern) ═══ */
 .pageHero {
-  background: var(--black);
+  background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
   padding: 140px 0 72px;
   text-align: center;
   position: relative;
@@ -11,7 +11,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 120%, rgba(255,159,67,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 120%, rgba(255, 159, 67, 0.08) 0%, transparent 60%);
 }
 
 .pageHeroKicker {
@@ -27,14 +27,14 @@
   font-family: var(--font-heading);
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 900;
-  color: var(--white);
+  color: #ffffff;
   line-height: 1.1;
   margin-bottom: 20px;
 }
 
 .pageHeroSub {
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   max-width: 540px;
   margin: 0 auto;
   line-height: 1.7;
@@ -45,23 +45,48 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 500px;
+  margin-top: 60px;
+
+  /* border: 1px solid red; */
+}
+
+
+.aboutSplitGoals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+  margin-top: 60px;
+
+  /* border: 1px solid red; */
 }
 
 .aboutSplitReversed {
   direction: rtl;
 }
 
-.aboutSplitReversed > * {
+.aboutSplitReversed>* {
   direction: ltr;
 }
 
 .aboutSplitImg {
   overflow: hidden;
+  border-right: 1px solid #c5c5c5;
+}
+
+.aboutSplitImgGoals {
+  overflow: hidden;
 }
 
 .aboutSplitImg img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.aboutSplitImgGoals img {
+  width: 90%;
+  height: 90%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
@@ -70,13 +95,62 @@
   transform: scale(1.04);
 }
 
+.aboutSplitImgGoals:hover img {
+  transform: scale(1.04);
+}
+
 .aboutSplitContent {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 56px 64px;
-  background: var(--cream);
+  /* background: var(--cream); */
+  background: #ffffff !important;
   gap: 4px;
+}
+
+.aboutSplitContentGoals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 64px;
+  /* background: var(--cream); */
+  background: #ffffff !important;
+  gap: 4px;
+}
+
+.aboutSplitContent span {
+  font-size: 1.5rem !important;
+  text-align: center;
+
+}
+
+.aboutSplitContentGoals span {
+  font-size: 1.3rem;
+  text-align: center
+}
+
+.goalItem span {
+  text-align: left !important;
+}
+
+.aboutSplitContent h2 {
+  color: #000000 !important;
+  text-align: center;
+  font-weight: 300;
+}
+
+.aboutSplitContentGoals h2 {
+  color: #000000 !important;
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.5rem !important;
+
+}
+
+.getInvolvedBtn {
+  margin: auto;
+  width: 40% !important;
 }
 
 .aboutSplitContentLight {
@@ -94,16 +168,27 @@
 
 .bodyText {
   font-size: 0.95rem;
-  color: var(--gray-600);
+  color: #8d8d8d;
   line-height: 1.7;
   margin-bottom: 16px;
 }
 
 @media (max-width: 900px) {
-  .aboutSplit { grid-template-columns: 1fr; }
-  .aboutSplitReversed { direction: ltr; }
-  .aboutSplitContent { padding: 40px 24px; }
-  .aboutSplitImg { max-height: 300px; }
+  .aboutSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .aboutSplitReversed {
+    direction: ltr;
+  }
+
+  .aboutSplitContent {
+    padding: 40px 24px;
+  }
+
+  .aboutSplitImg {
+    max-height: 300px;
+  }
 }
 
 /* ═══ Goals ═══ */
@@ -132,8 +217,8 @@
 }
 
 .goalText {
-  font-size: 0.94rem;
-  color: var(--gray-600);
+  font-size: 1.1rem !important;
+  color: #505050;
   line-height: 1.65;
 }
 
@@ -141,7 +226,10 @@
 .valuesSection {
   padding: 100px 0;
   background: var(--cream);
+  margin-top: 60px;
 }
+
+
 
 .valuesSectionHead {
   text-align: center;
@@ -149,25 +237,61 @@
   margin: 0 auto 48px;
 }
 
+.valuesSectionHead span {
+  font-size: 1.3rem;
+}
+
+.valuesSectionHead h2 {
+  color: #000000 !important;
+  font-weight: 300;
+}
+
+.valuesContainer {
+  /* border: 1px solid rgb(10, 25, 10); */
+  width: 100%;
+  margin: auto;
+  height: 35vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url('/assets/images/about-hero.png'); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.valuesContainerOverlay {
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(102, 13, 13); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  width: 70%;
+  /* border: 1px solid red; */
 }
 
 .valueCard {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: var(--r-lg);
   padding: 32px 24px;
   text-align: center;
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   transition: all 0.3s ease;
 }
 
 .valueCard:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  border-color: rgba(255,159,67,0.2);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
 .valueCardIcon {
@@ -179,7 +303,7 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.05rem;
-  color: var(--gray-900);
+  color: #000000;
   margin-bottom: 10px;
 }
 
@@ -190,90 +314,212 @@
 }
 
 @media (max-width: 900px) {
-  .valuesGrid { grid-template-columns: repeat(2, 1fr); }
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 520px) {
-  .valuesGrid { grid-template-columns: 1fr; }
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ═══ Team ═══ */
-.teamSection {
+/* ═══ Board & Leadership ═══ */
+.boardSection {
   padding: 80px 0;
-  background: var(--cream);
+  background: #ffffff;
 }
 
-.teamSectionAlt {
-  padding-top: 0;
-  background: var(--white);
-}
-
-.teamSectionHead {
+.boardSectionHead {
   text-align: center;
   max-width: 560px;
-  margin: 0 auto 40px;
+  margin: 0 auto 50px;
 }
 
-.teamGrid {
+.boardSectionHead h2 {
+  color: #000000 !important;
+}
+
+.boardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 36px;
+  max-width: 960px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.boardCard {
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.boardCard:hover {
+  transform: translateY(-8px);
+}
+
+.boardCardImg {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  /* border: 4px solid rgba(255, 159, 67, 0.15); */
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.boardCardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+
+/* .boardCard:hover .boardCardImg {
+  border-color: var(--orange);
+  box-shadow: 0 12px 28px rgba(255, 159, 67, 0.2);
+} */
+
+.boardCard:hover .boardCardImg img {
+  transform: scale(1.06);
+}
+
+.boardCardBody {
+  text-align: center;
+}
+
+.boardCardName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #000000;
+}
+
+.boardCardRole {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #d9d9d9
+}
+
+/* ═══ Staff & The Team ═══ */
+.staffSection {
+  /* padding: 80px 0; */
+  /* background: url("/assets/images/office.jpg"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.staffSectionOverlay {
+  padding: 70px;
+  width: 100%;
+  height: 100%;
+  background: var(--cream);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.staffSectionHead {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 50px;
+}
+
+.staffGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.teamCard {
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--white);
-  border: 1px solid rgba(0,0,0,0.06);
-  transition: all 0.3s ease;
+.staffCard {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--r-xl);
+  padding: 36px 24px 28px;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
-.teamSectionAlt .teamCard {
-  background: var(--cream);
-}
-
-.teamCard:hover {
+.staffCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  border-color: rgba(255, 159, 67, 0.15);
 }
 
-.teamCardImg {
+.staffCardImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
   overflow: hidden;
+  margin-bottom: 22px;
+  border: 3px solid rgba(0, 0, 0, 0.03);
+  transition: border-color 0.3s ease;
 }
 
-.teamCardImg img {
+.staffCardImg img {
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
+  border-radius: 50%;
   transition: transform 0.4s ease;
 }
 
-.teamCard:hover .teamCardImg img {
+/* .staffCard:hover .staffCardImg {
+  border-color: rgba(255, 159, 67, 0.3);
+} */
+
+.staffCard:hover .staffCardImg img {
   transform: scale(1.06);
 }
 
-.teamCardBody {
-  padding: 20px 24px;
+.staffCardBody {
   text-align: center;
 }
 
-.teamCardName {
+.staffCardName {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1rem;
-  color: var(--gray-900);
-  margin-bottom: 4px;
+  font-size: 1.05rem;
+  color: #000000;
+  margin-bottom: 6px;
 }
 
-.teamCardRole {
-  font-size: 0.85rem;
+.staffCardRole {
+  font-size: 0.88rem;
   color: var(--gray-500);
 }
 
-@media (max-width: 768px) {
-  .teamGrid { grid-template-columns: 1fr 1fr; }
+/* Responsive Team Breakpoints */
+@media (max-width: 900px) {
+
+  .boardGrid,
+  .staffGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
 }
-@media (max-width: 500px) {
-  .teamGrid { grid-template-columns: 1fr; max-width: 360px; }
+
+@media (max-width: 560px) {
+
+  .boardGrid,
+  .staffGrid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
