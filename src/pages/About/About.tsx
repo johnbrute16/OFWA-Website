@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './About.module.css';
+import clsx from 'clsx';
 
 const values = [
   { icon: '🤝', title: 'Collaboration', body: 'We believe in the power of working together — with communities, institutions, and global partners.' },
@@ -47,25 +48,39 @@ const About: React.FC = () => {
       {/* MISSION SPLIT */}
       <section className={styles.aboutSplit}>
         <div className={styles.aboutSplitImg}>
-          <img src="/assets/images/about-hero.png" alt="OFWA community work" />
+          {/* <img src="/assets/images/about-hero.png" alt="OFWA community work" /> */}
+          <div className={`${styles.aboutSplitContentGoals} ${styles.aboutSplitContentLight}`}>
+            <span className="section-tag mission-title reveal">Our Goals</span>
+            <h2 className={`${styles.sectionHDark} reveal `}>What We're Working Towards</h2>
+            <div className={`${styles.goalsList} reveal d2`}>
+              {goals.map((goal, i) => (
+                <div key={i} className={styles.goalItem}>
+                  <span className={styles.goalNumber}>{String(i + 1).padStart(2, '0')}</span>
+                  <span className={styles.goalText}>{goal}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <div className={styles.aboutSplitContent}>
-          <span className="section-tag reveal">Our Mission</span>
+          <span className="section-tag mission-title reveal">Our Mission</span>
           <h2 className={`${styles.sectionHDark} reveal d1`}>Contribution to the Open Movement</h2>
           <p className={`${styles.bodyText} reveal d2`}>Open Foundation West Africa (OFWA) is dedicated to growing women's participation in open knowledge through training, community hubs, and advocacy across Africa. We believe that when women lead in creating and curating knowledge, entire communities thrive.</p>
           <p className={`${styles.bodyText} reveal d3`}>Since our founding, we've trained thousands of women in Wikipedia editing, digital skills, and open-source tools — building Africa's representation in the global knowledge commons.</p>
-          <Link className="btn-orange reveal d4" to="/contact">Get Involved <ArrowRight size={16} /></Link>
+          <button className={styles.getInvolvedBtn}>
+            <Link className="btn-orange reveal d4" to="/contact">Get Involved <ArrowRight size={16} /></Link>
+          </button>
         </div>
       </section>
 
       {/* GOALS SPLIT (reversed) */}
-      <section className={`${styles.aboutSplit} ${styles.aboutSplitReversed}`}>
-        <div className={styles.aboutSplitImg}>
+      {/* <section className={`${styles.aboutSplitGoals} ${styles.aboutSplitReversed}`}>
+        <div className={styles.aboutSplitImgGoals}>
           <img src="/assets/images/hub-photo-1.png" alt="OFWA in action" />
         </div>
-        <div className={`${styles.aboutSplitContent} ${styles.aboutSplitContentLight}`}>
-          <span className="section-tag reveal">Our Goals</span>
-          <h2 className={`${styles.sectionHDark} reveal d1`}>What We're Working Towards</h2>
+        <div className={`${styles.aboutSplitContentGoals} ${styles.aboutSplitContentLight}`}>
+          <span className="section-tag mission-title reveal">Our Goals</span>
+          <h2 className={`${styles.sectionHDark} reveal `}>What We're Working Towards</h2>
           <div className={`${styles.goalsList} reveal d2`}>
             {goals.map((goal, i) => (
               <div key={i} className={styles.goalItem}>
@@ -75,43 +90,47 @@ const About: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* VALUES */}
       <section className={styles.valuesSection}>
-        <div className="container">
+        <div>
           <div className={styles.valuesSectionHead}>
             <span className="section-tag reveal">What Guides Us</span>
             <h2 className={`${styles.sectionHDark} reveal d1`}>Our Core Values</h2>
           </div>
-          <div className={styles.valuesGrid}>
-            {values.map((v, i) => (
-              <div key={i} className={`${styles.valueCard} reveal ${i > 0 ? `d${i}` : ''}`}>
-                <div className={styles.valueCardIcon}>{v.icon}</div>
-                <h3 className={styles.valueCardTitle}>{v.title}</h3>
-                <p className={styles.valueCardBody}>{v.body}</p>
+          <div className={styles.valuesContainer}>
+            <div className={styles.valuesContainerOverlay}>
+              <div className={styles.valuesGrid}>
+                {values.map((v, i) => (
+                  <div key={i} className={`${styles.valueCard} reveal ${i > 0 ? `d${i}` : ''}`}>
+                    <div className={styles.valueCardIcon}>{v.icon}</div>
+                    <h3 className={styles.valueCardTitle}>{v.title}</h3>
+                    <p className={styles.valueCardBody}>{v.body}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* BOARD */}
-      <section className={styles.teamSection}>
+      <section className={styles.boardSection}>
         <div className="container">
-          <div className={styles.teamSectionHead}>
+          <div className={styles.boardSectionHead}>
             <span className="section-tag reveal">Leadership</span>
-            <h2 className={`${styles.sectionHDark} reveal d1`}>Board Members</h2>
+            <h2 className={`${clsx(styles.sectionHDark, styles.boardH2)} reveal`}>Board Members</h2>
           </div>
-          <div className={styles.teamGrid}>
+          <div className={styles.boardGrid}>
             {boardMembers.map((m, i) => (
-              <div key={i} className={`${styles.teamCard} reveal ${i > 0 ? `d${i}` : ''}`}>
-                <div className={styles.teamCardImg}>
-                  <img src="/assets/images/team-member.png" alt={m.name} />
+              <div key={i} className={`${styles.boardCard} reveal ${i > 0 ? `d${i}` : ''}`}>
+                <div className={styles.boardCardImg}>
+                  <img src="/assets/images/office-lady.jpg" alt={m.name} />
                 </div>
-                <div className={styles.teamCardBody}>
-                  <p className={styles.teamCardName}>{m.name}</p>
-                  <p className={styles.teamCardRole}>{m.role}</p>
+                <div className={styles.boardCardBody}>
+                  <p className={styles.boardCardName}>{m.name}</p>
+                  <p className={styles.boardCardRole}>{m.role}</p>
                 </div>
               </div>
             ))}
@@ -120,24 +139,26 @@ const About: React.FC = () => {
       </section>
 
       {/* STAFF */}
-      <section className={`${styles.teamSection} ${styles.teamSectionAlt}`}>
-        <div className="container">
-          <div className={styles.teamSectionHead}>
-            <span className="section-tag reveal">The Team</span>
-            <h2 className={`${styles.sectionHDark} reveal d1`}>Staff Members</h2>
-          </div>
-          <div className={styles.teamGrid}>
-            {staffMembers.map((m, i) => (
-              <div key={i} className={`${styles.teamCard} reveal ${i > 0 ? `d${i}` : ''}`}>
-                <div className={styles.teamCardImg}>
-                  <img src="/assets/images/team-member.png" alt={m.name} />
+      <section className={styles.staffSection}>
+        <div className={styles.staffSectionOverlay}>
+          <div className="container">
+            <div className={styles.staffSectionHead}>
+              <span className="section-tag reveal">The Team</span>
+              <h2 className={`${styles.sectionHDark} reveal d1`}>Staff Members</h2>
+            </div>
+            <div className={styles.staffGrid}>
+              {staffMembers.map((m, i) => (
+                <div key={i} className={`${styles.staffCard} reveal ${i > 0 ? `d${i}` : ''}`}>
+                  <div className={styles.staffCardImg}>
+                    <img src="/assets/images/team-member.png" alt={m.name} />
+                  </div>
+                  <div className={styles.staffCardBody}>
+                    <p className={styles.staffCardName}>{m.name}</p>
+                    <p className={styles.staffCardRole}>{m.role}</p>
+                  </div>
                 </div>
-                <div className={styles.teamCardBody}>
-                  <p className={styles.teamCardName}>{m.name}</p>
-                  <p className={styles.teamCardRole}>{m.role}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
