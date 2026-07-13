@@ -524,16 +524,13 @@
   z-index: 1;
 }
 
-.galleryCarouselArrows {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-.carouselArrow {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+.galleryArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: var(--white);
   width: 44px;
   height: 44px;
@@ -541,13 +538,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
 }
 
-.carouselArrow:hover {
+.galleryArrow:hover {
   background: var(--orange-gradient);
-  color: var(--black);
   border-color: transparent;
+  color: var(--black);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.galleryArrowPrev {
+  left: 16px;
+}
+
+.galleryArrowNext {
+  right: 16px;
 }
 
 @media (max-width: 768px) {

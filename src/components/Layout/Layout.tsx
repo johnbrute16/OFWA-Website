@@ -10,9 +10,20 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
 
-  // Scroll to top on route change
+  // Scroll to top and handle body theme switching on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    if (pathname !== '/') {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+    
+    // Clean up class when component unmounts
+    return () => {
+      document.body.classList.remove('light-theme');
+    };
   }, [pathname]);
 
   return (

@@ -204,3 +204,52 @@
     justify-content: center;
   }
 }
+
+/* Light Theme Navbar Overrides */
+:global(body.light-theme) .siteNav {
+  background: rgba(252, 251, 250, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+:global(body.light-theme) .scrolled {
+  background: rgba(252, 251, 250, 0.94);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+:global(body.light-theme) .navLogo img {
+  filter: none;
+}
+
+:global(body.light-theme) .navLogoText {
+  color: var(--white);
+}
+
+:global(body.light-theme) .menuLink {
+  color: var(--gray-300);
+}
+
+:global(body.light-theme) .menuLink:hover {
+  color: var(--white);
+}
+
+:global(body.light-theme) .active {
+  color: var(--orange) !important;
+  background: rgba(255, 159, 67, 0.08);
+}
+
+:global(body.light-theme) .navToggle {
+  color: var(--white);
+}
+
+:global(body.light-theme) .navToggle:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 992px) {
+  :global(body.light-theme) .navMenu {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}
+

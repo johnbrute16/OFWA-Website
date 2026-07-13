@@ -57,3 +57,33 @@
   --glow-strong: 0 0 35px rgba(255, 159, 67, 0.3);
   --glass-border: 1px solid rgba(255, 255, 255, 0.07);
 }
+
+/* Light Theme Variables Override */
+body.light-theme {
+  --black: #ffffff;
+  --dark: #fcfbfa; /* Soft warm cream-white base background */
+  --dark-glass: rgba(252, 251, 250, 0.7);
+  --dark2: #ffffff; /* Solid white for cards/boxes */
+  --dark2-glass: rgba(255, 255, 255, 0.85);
+  --dark3: #f3f0ea; /* Lighter borders or background accents */
+  --white: #0a0e1a; /* Dark charcoal-blue for primary headings/text */
+
+  /* Inverted Gray Scale for readability on light backgrounds */
+  --gray-50: #0a0e1a;
+  --gray-100: #1a2233;
+  --gray-200: #2c384c;
+  --gray-300: #42526b;
+  --gray-400: #5c6e8a;
+  --gray-500: #7c8ea6;
+  --gray-600: #ccd5e0;
+  --gray-700: #e3e8f0;
+  --gray-800: #f1f5f9;
+  --gray-900: #f8fafc;
+  
+  --glass-border: 1px solid rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+

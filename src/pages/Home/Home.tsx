@@ -244,6 +244,12 @@ const Home: React.FC = () => {
             <div className={styles.galleryFeatured}>
               <img src={galleryThumbs[galleryIdx].img} alt={galleryThumbs[galleryIdx].title} className={styles.galleryFeaturedImg} />
               <div className={styles.galleryFeaturedOverlay} />
+              <button className={`${styles.galleryArrow} ${styles.galleryArrowPrev}`} onClick={() => galGoTo(galleryIdx - 1)} aria-label="Previous photo">
+                <ChevronLeft size={22} />
+              </button>
+              <button className={`${styles.galleryArrow} ${styles.galleryArrowNext}`} onClick={() => galGoTo(galleryIdx + 1)} aria-label="Next photo">
+                <ChevronRight size={22} />
+              </button>
               <div className={styles.galleryFeaturedInfo}>
                 <span className={styles.galleryFeaturedCat}>{galleryThumbs[galleryIdx].cat}</span>
                 <p className={styles.galleryFeaturedTitle}>{galleryThumbs[galleryIdx].title}</p>
@@ -259,10 +265,6 @@ const Home: React.FC = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div className={`${styles.galleryCarouselArrows} reveal`}>
-            <button className={styles.carouselArrow} onClick={() => galGoTo(galleryIdx - 1)} aria-label="Previous photo"><ChevronLeft size={20} /></button>
-            <button className={styles.carouselArrow} onClick={() => galGoTo(galleryIdx + 1)} aria-label="Next photo"><ChevronRight size={20} /></button>
           </div>
         </div>
       </section>

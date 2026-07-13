@@ -83,11 +83,11 @@ const galleryCards = [
 
 const filters = [
   { label: 'All', value: 'all' },
-  { label: 'Hubs', value: 'hubs' },
-  { label: 'Events', value: 'events' },
-  { label: 'Campaigns', value: 'campaigns' },
-  { label: 'Training', value: 'training' },
-  { label: 'Community', value: 'community' },
+  // { label: 'Hubs', value: 'hubs' },
+  { label: 'Media & CSO', value: 'events' },
+  { label: 'DSEF', value: 'campaigns' },
+  { label: 'Afro Creatives 2025', value: 'training' },
+  { label: 'AI for Kids', value: 'community' },
 ];
 
 interface DriveFile {
@@ -135,7 +135,7 @@ const Gallery: React.FC = () => {
           }
           const data = await response.json();
           const files: DriveFile[] = data.files || [];
-          
+
           return files.map((file) => ({
             full: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`,
             alt: file.name.split('.')[0] || file.name,
