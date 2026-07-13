@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ZoomIn, Heart } from 'lucide-react';
+import { ZoomIn, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Lightbox } from '../../components/Lightbox/Lightbox';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './Gallery.module.css';
@@ -109,6 +109,7 @@ const Gallery: React.FC = () => {
   useScrollReveal();
   const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxIdx, setLightboxIdx] = useState(-1);
+  const [currentPage, setCurrentPage] = useState(0);
 
   // Fetch images from all Google Drive folders in parallel
   useEffect(() => {
@@ -164,22 +165,27 @@ const Gallery: React.FC = () => {
     return card.categories.includes(activeFilter);
   });
 
+  const ITEMS_PER_PAGE = 10;
+  const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
+  const activePage = Math.min(currentPage, Math.max(0, totalPages - 1));
+  const paginatedCards = filteredCards.slice(activePage * ITEMS_PER_PAGE, (activePage + 1) * ITEMS_PER_PAGE);
+
   const openLightbox = (cardIndex: number) => {
     setLightboxIdx(cardIndex);
   };
 
   const handlePrev = () => {
-    setLightboxIdx((prev) => (prev - 1 + filteredCards.length) % filteredCards.length);
+    setLightboxIdx((prev) => (prev - 1 + paginatedCards.length) % paginatedCards.length);
   };
 
   const handleNext = () => {
-    setLightboxIdx((prev) => (prev + 1) % filteredCards.length);
+    setLightboxIdx((prev) => (prev + 1) % paginatedCards.length);
   };
 
   return (
     <>
       <Lightbox
-        images={filteredCards}
+        images={paginatedCards}
         currentIndex={lightboxIdx}
         onClose={() => setLightboxIdx(-1)}
         onPrev={handlePrev}
@@ -196,7 +202,7 @@ const Gallery: React.FC = () => {
       </section>
 
       {/* GALLERY GRID SECTION */}
-      <section className={styles.galleryPage}>
+      <section className={styles.galleryPage} id="gallery-section">
         <div className="container">
           <div className={`${styles.galleryFilters} reveal`}>
             {filters.map((f) => (
@@ -206,6 +212,7 @@ const Gallery: React.FC = () => {
                 onClick={() => {
                   setActiveFilter(f.value);
                   setLightboxIdx(-1);
+                  setCurrentPage(0);
                 }}
               >
                 {f.label}
@@ -225,7 +232,7 @@ const Gallery: React.FC = () => {
                 </div>
               ))
             ) : (
-              filteredCards.map((card, i) => (
+              paginatedCards.map((card, i) => (
                 <div
                   key={i}
                   className={styles.galleryCard}
@@ -251,6 +258,60 @@ const Gallery: React.FC = () => {
               ))
             )}
           </div>
+
+          {/* PAGINATION CONTROLS */}
+          {totalPages > 1 && (
+            <div className={`${styles.pagination} reveal`}>
+              <button
+                className={`${styles.pageBtn} ${styles.pageNavBtn}`}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.max(0, prev - 1));
+                  const gallerySection = document.getElementById('gallery-section');
+                  if (gallerySection) {
+                    gallerySection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                disabled={activePage === 0}
+                aria-label="Previous page"
+              >
+                <ChevronLeft size={16} />
+                <span>Prev</span>
+              </button>
+
+              {Array.from({ length: totalPages }).map((_, pageIdx) => (
+                <button
+                  key={pageIdx}
+                  className={`${styles.pageBtn} ${activePage === pageIdx ? styles.pageBtnActive : ''}`}
+                  onClick={() => {
+                    setCurrentPage(pageIdx);
+                    const gallerySection = document.getElementById('gallery-section');
+                    if (gallerySection) {
+                      gallerySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  aria-label={`Go to page ${pageIdx + 1}`}
+                >
+                  {pageIdx + 1}
+                </button>
+              ))}
+
+              <button
+                className={`${styles.pageBtn} ${styles.pageNavBtn}`}
+                onClick={() => {
+                  setCurrentPage((prev) => Math.min(totalPages - 1, prev + 1));
+                  const gallerySection = document.getElementById('gallery-section');
+                  if (gallerySection) {
+                    gallerySection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                disabled={activePage === totalPages - 1}
+                aria-label="Next page"
+              >
+                <span>Next</span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
