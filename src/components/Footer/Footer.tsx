@@ -52,20 +52,22 @@ export const Footer: React.FC<FooterProps> = () => {
     <footer className={styles.siteFooter}>
       <div className={`container ${styles.footerGrid}`}>
         <div className={styles.brandCol}>
-          <img className={styles.footerLogo} src="/assets/images/ofwa-logo-new.png" alt="OFWA" />
-          <h3 className={styles.footerName}>Open Foundation West Africa</h3>
+          <div className={styles.brandHeader}>
+            <img className={styles.footerLogo} src="/assets/images/ofwa-logo-new.png" alt="OFWA" />
+            <h3 className={styles.footerName}>Open Foundation West Africa</h3>
+          </div>
 
           <div className={styles.contactList}>
             <div className={styles.contactItem}>
-              <MapPin size={16} className={styles.contactIcon} />
+              <MapPin size={15} className={styles.contactIcon} />
               <span>132 52 Swaniker St, Accra, Ghana</span>
             </div>
             <div className={styles.contactItem}>
-              <Mail size={16} className={styles.contactIcon} />
+              <Mail size={15} className={styles.contactIcon} />
               <a href="mailto:info@ofwafrica.org">info@ofwafrica.org</a>
             </div>
             <div className={styles.contactItem}>
-              <Phone size={16} className={styles.contactIcon} />
+              <Phone size={15} className={styles.contactIcon} />
               <a href="tel:+233559959694">+233 55 995 9694</a>
             </div>
           </div>
@@ -76,92 +78,40 @@ export const Footer: React.FC<FooterProps> = () => {
           </Link>
         </div>
 
-        <div className={styles.linksCol}>
-          <h4>Navigate</h4>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/events">Events</Link></li>
-            <li><Link to="/gallery">Gallery</Link></li>
-            <li><Link to="/blog">News</Link></li>
-            <li><Link to="/volunteer">Volunteer</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-          </ul>
-        </div>
-
-        <div className={styles.linksCol}>
-          <h4>Get Involved</h4>
-          <ul>
-            <li><Link to="/donate">Donate</Link></li>
-            <li><Link to="/partner">Partner With Us</Link></li>
-            <li><Link to="/volunteer">Volunteer</Link></li>
-          </ul>
-        </div>
-
-        <div className={styles.linksCol}>
-          <h4>Follow Us</h4>
-          <ul>
-            <li><a href="https://www.facebook.com/ofwafrica/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="https://x.com/OFWAFRICA" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
-            <li><a href="https://gh.linkedin.com/company/ofwafrica" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://www.youtube.com/@ofwafrica/videos" target="_blank" rel="noopener noreferrer">YouTube</a></li>
-          </ul>
-        </div>
-      </div>
-
-      {/* <div className={styles.newsletterBand}>
-        <div className={`container ${styles.newsletterInner}`}>
-          <div className={styles.newsletterText}>
-            <h3>Stay in the Loop</h3>
-            <p>Get the latest news, events, and impact stories from OFWA delivered to your inbox.</p>
+        <div className={styles.navGroup}>
+          <div className={styles.linksRow}>
+            <h4 className={styles.rowTitle}>Navigate</h4>
+            <ul className={styles.rowLinks}>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/events">Events</Link></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/blog">News</Link></li>
+              <li><Link to="/volunteer">Volunteer</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+            </ul>
           </div>
 
-          <form className={styles.newsletterForm} onSubmit={handleSubmit}>
-            <div className={styles.inputRow}>
-              <input
-                className={styles.newsletterInput}
-                type="email"
-                placeholder={status === 'success' ? 'Thanks for subscribing!' : 'Enter your email address'}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status === 'submitting' || status === 'success'}
-                required
-              />
-              <button 
-                type="submit" 
-                className={styles.newsletterBtn}
-                disabled={status === 'submitting' || !consent}
-              >
-                {status === 'submitting' ? (
-                  <span className={styles.spinner} />
-                ) : status === 'success' ? (
-                  'Subscribed!'
-                ) : (
-                  <>
-                    <span>Subscribe</span>
-                    <Send size={14} />
-                  </>
-                )}
-              </button>
-            </div>
-            
-            <label className={styles.consentLabel}>
-              <input 
-                type="checkbox" 
-                checked={consent}
-                onChange={(e) => setConsent(e.target.checked)}
-                disabled={status === 'submitting' || status === 'success'}
-                required 
-              />
-              <span>I agree to the Privacy Policy</span>
-            </label>
+          <div className={styles.linksRow}>
+            <h4 className={styles.rowTitle}>Get Involved</h4>
+            <ul className={styles.rowLinks}>
+              <li><Link to="/donate">Donate</Link></li>
+              <li><Link to="/partner">Partner With Us</Link></li>
+              <li><Link to="/volunteer">Volunteer</Link></li>
+            </ul>
+          </div>
 
-            {status === 'error' && (
-              <p className={styles.errorMsg}>Something went wrong. Please try again.</p>
-            )}
-          </form>
+          <div className={styles.linksRow}>
+            <h4 className={styles.rowTitle}>Follow Us</h4>
+            <ul className={styles.rowLinks}>
+              <li><a href="https://www.facebook.com/ofwafrica/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="https://x.com/OFWAFRICA" target="_blank" rel="noopener noreferrer">Twitter / X</a></li>
+              <li><a href="https://gh.linkedin.com/company/ofwafrica" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://www.youtube.com/@ofwafrica/videos" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+            </ul>
+          </div>
         </div>
-      </div> */}
+      </div>
 
       <div className={`container ${styles.footerBottom}`}>
         <p>© {currentYear} Open Foundation West Africa. All rights reserved. · Built for open knowledge.</p>

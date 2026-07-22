@@ -1,6 +1,6 @@
 /* ═══ Page Hero ═══ */
 .pageHero {
-  background: var(--black);
+  background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
   padding: 140px 0 72px;
   text-align: center;
   position: relative;
@@ -11,7 +11,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 120%, rgba(255,159,67,0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 50% 120%, rgba(255, 159, 67, 0.08) 0%, transparent 60%);
 }
 
 .pageHeroKicker {
@@ -27,14 +27,14 @@
   font-family: var(--font-heading);
   font-size: clamp(2.4rem, 6vw, 4.2rem);
   font-weight: 900;
-  color: var(--white);
+  color: #ffffff;
   line-height: 1.1;
   margin-bottom: 20px;
 }
 
 .pageHeroSub {
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   max-width: 540px;
   margin: 0 auto;
   line-height: 1.7;
@@ -64,7 +64,7 @@
   padding: 40px;
   border-radius: var(--r-xl);
   box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(0,0,0,0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .contactFormH {
@@ -187,13 +187,13 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--gray-500);
+  color: #1c1c1c;
   margin-bottom: 4px;
 }
 
 .contactInfoVal {
   font-size: 0.95rem;
-  color: var(--gray-700);
+  color: #1c1c1c;
   line-height: 1.5;
 }
 
@@ -211,7 +211,7 @@
 .contactSocials a {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--gray-600);
+  color: #f0730c;
 }
 
 .contactSocials a:hover {
@@ -338,7 +338,8 @@
 }
 
 .faqAnswerOpen {
-  max-height: 200px; /* high enough threshold to fit any faq text content */
+  max-height: 200px;
+  /* high enough threshold to fit any faq text content */
   padding: 0 24px 20px;
   border-top-color: var(--gray-200);
 }
@@ -368,7 +369,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 80%, rgba(255,159,67,0.1) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 80%, rgba(255, 159, 67, 0.1) 0%, transparent 65%);
 }
 
 .donateCtaTag {
@@ -391,7 +392,7 @@
 
 .donateCtaSub {
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.45);
+  color: #000000;
   max-width: 540px;
   margin: 0 auto 32px;
   line-height: 1.7;
@@ -414,7 +415,7 @@
 
 .btnDonateBig:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 45px rgba(255,159,67,0.5);
+  box-shadow: 0 14px 45px rgba(255, 159, 67, 0.5);
 }
 
 @media (max-width: 600px) {

@@ -294,7 +294,7 @@ const Donate: React.FC = () => {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <span className="section-tag reveal">Questions</span>
-            <h2 className={`${styles.sectionH} reveal d1`}>Donation FAQs</h2>
+            <h2 className={`${styles.sectionH} ${styles.donateFaqHeader} reveal d1`}>Donation FAQs</h2>
           </div>
           <div className={styles.faqList}>
             {faqs.map((faq, i) => (

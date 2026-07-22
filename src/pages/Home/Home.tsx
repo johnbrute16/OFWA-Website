@@ -1,10 +1,265 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Play, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Heart, Play, ChevronLeft, ChevronRight, ArrowRight, MapPin } from 'lucide-react';
 import { VideoModal } from '../../components/VideoModal/VideoModal';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useCountUp } from '../../hooks/useCountUp';
 import styles from './Home.module.css';
+
+/* ── Ghana Regions & Hubs Data ───────────────────── */
+interface HubItem {
+  name: string;
+  type: string;
+  location: string;
+  detail: string;
+}
+
+interface GhanaRegion {
+  id: string;
+  name: string;
+  shortName: string;
+  capital: string;
+  color: string;
+  path: string;
+  badgeX: number;
+  badgeY: number;
+  textX: number;
+  textY: number;
+  hubs: HubItem[];
+}
+
+const ghanaRegionsData: GhanaRegion[] = [
+  {
+    id: 'greater-accra',
+    name: 'Greater Accra Region',
+    shortName: 'GREATER ACCRA',
+    capital: 'ACCRA',
+    color: '#d60000',
+    path: 'M 305,535 L 375,475 L 440,535 L 315,555 Z',
+    badgeX: 395,
+    badgeY: 515,
+    textX: 355,
+    textY: 522,
+    hubs: [
+      { name: 'Accra Wiki Hub', type: 'Hub', location: 'Achimota & Abelemkpe, Accra', detail: 'Flagship Community Hub' },
+      { name: 'UG Wiki Club', type: 'Club', location: 'University of Ghana, Legon', detail: 'University Club' },
+      { name: 'GH Media Wiki Club', type: 'Club', location: 'GH Media School, Achimota', detail: 'Media & Communications Club' },
+      { name: 'New Health Wiki Club', type: 'Club', location: 'Accra', detail: 'Health & Open Knowledge Initiative' },
+    ],
+  },
+  {
+    id: 'ashanti',
+    name: 'Ashanti Region',
+    shortName: 'ASHANTI',
+    capital: 'KUMASI',
+    color: '#f8c82a',
+    path: 'M 130,350 L 255,370 L 365,395 L 265,470 L 140,465 L 115,395 Z',
+    badgeX: 250,
+    badgeY: 410,
+    textX: 205,
+    textY: 415,
+    hubs: [
+      { name: 'Kumasi Wiki Hub', type: 'Hub', location: 'Adum, Kumasi', detail: 'Regional Training Centre' },
+      { name: 'Wikitech Student Developers Club, Kumasi', type: 'Club', location: 'Kumasi', detail: 'Student Developer Community' },
+    ],
+  },
+  {
+    id: 'northern',
+    name: 'Northern Region',
+    shortName: 'NORTHERN',
+    capital: 'TAMALE',
+    color: '#96e072',
+    path: 'M 215,165 L 265,160 L 390,140 L 420,240 L 360,285 L 215,285 L 245,210 Z',
+    badgeX: 350,
+    badgeY: 200,
+    textX: 310,
+    textY: 205,
+    hubs: [
+      { name: 'Tamale Wiki Hub', type: 'Hub', location: 'Tamale', detail: 'Community & Regional Hub' },
+      { name: 'UDS Wiki Tech', type: 'Club', location: 'University for Development Studies, Tamale', detail: 'University Tech Club' },
+    ],
+  },
+  {
+    id: 'upper-west',
+    name: 'Upper West Region',
+    shortName: 'UPPER WEST',
+    capital: 'WA',
+    color: '#d99b38',
+    path: 'M 40,20 L 195,20 L 210,50 L 180,120 L 110,130 L 60,110 Z',
+    badgeX: 150,
+    badgeY: 70,
+    textX: 105,
+    textY: 70,
+    hubs: [
+      { name: 'SDD UBIDS Wiki Club', type: 'Club', location: 'SD Dombo University, Wa', detail: 'University Club' },
+      { name: 'Dr. Hilla Limann Wiki Club', type: 'Club', location: 'Dr. Hilla Limann Technical University, Wa', detail: 'Technical University Club' },
+    ],
+  },
+  {
+    id: 'north-east',
+    name: 'North East Region',
+    shortName: 'NORTH EAST',
+    capital: 'NALERIGU',
+    color: '#323e7e',
+    path: 'M 180,120 L 210,50 L 270,105 L 325,100 L 375,85 L 390,140 L 265,160 Z',
+    badgeX: 330,
+    badgeY: 125,
+    textX: 285,
+    textY: 125,
+    hubs: [
+      { name: 'Walewale Wiki Hub', type: 'Hub', location: 'Walewale', detail: 'Community Hub' },
+    ],
+  },
+  {
+    id: 'volta',
+    name: 'Volta Region',
+    shortName: 'VOLTA',
+    capital: 'HO',
+    color: '#73ccf4',
+    path: 'M 390,415 L 435,400 L 490,480 L 435,535 L 375,475 L 340,400 Z',
+    badgeX: 435,
+    badgeY: 460,
+    textX: 405,
+    textY: 465,
+    hubs: [
+      { name: 'Ho Wiki Hub', type: 'Hub', location: 'Ho', detail: 'Regional Community Hub' },
+    ],
+  },
+  {
+    id: 'central',
+    name: 'Central Region',
+    shortName: 'CENTRAL',
+    capital: 'CAPE COAST',
+    color: '#d80098',
+    path: 'M 140,465 L 265,470 L 235,505 L 315,555 L 185,595 L 185,550 L 115,530 Z',
+    badgeX: 250,
+    badgeY: 535,
+    textX: 205,
+    textY: 540,
+    hubs: [
+      { name: 'Central Wikitech Club', type: 'Club', location: 'Cape Coast / Central Region', detail: 'Regional Wikitech Club' },
+    ],
+  },
+  {
+    id: 'western-north',
+    name: 'Western North Region',
+    shortName: 'WESTERN NORTH',
+    capital: 'SEFWI WIAWSO',
+    color: '#784936',
+    path: 'M 40,370 L 115,395 L 140,465 L 115,530 L 15,480 L 10,430 Z',
+    badgeX: 100,
+    badgeY: 435,
+    textX: 65,
+    textY: 440,
+    hubs: [
+      { name: 'Enchi Wiki Club', type: 'Club', location: 'Enchi', detail: 'College Wiki Club' },
+    ],
+  },
+  {
+    id: 'upper-east',
+    name: 'Upper East Region',
+    shortName: 'UPPER EAST',
+    capital: 'BOLGATANGA',
+    color: '#e62655',
+    path: 'M 195,20 L 340,15 L 360,60 L 325,100 L 270,105 L 210,50 Z',
+    badgeX: 270,
+    badgeY: 55,
+    textX: 270,
+    textY: 55,
+    hubs: [],
+  },
+  {
+    id: 'savannah',
+    name: 'Savannah Region',
+    shortName: 'SAVANNAH REGION',
+    capital: 'DAMANGO',
+    color: '#2b7a18',
+    path: 'M 60,110 L 110,130 L 180,120 L 265,160 L 215,165 L 245,210 L 215,285 L 330,300 L 325,320 L 155,275 L 55,225 L 60,170 Z',
+    badgeX: 140,
+    badgeY: 195,
+    textX: 140,
+    textY: 195,
+    hubs: [],
+  },
+  {
+    id: 'bono-east',
+    name: 'Bono East Region',
+    shortName: 'BONO EAST',
+    capital: 'TECHIMAN',
+    color: '#e05316',
+    path: 'M 155,275 L 325,320 L 340,300 L 390,325 L 365,395 L 255,370 L 130,350 L 135,305 Z',
+    badgeX: 245,
+    badgeY: 325,
+    textX: 245,
+    textY: 325,
+    hubs: [],
+  },
+  {
+    id: 'bono',
+    name: 'Bono Region',
+    shortName: 'BONO',
+    capital: 'SUNYANI',
+    color: '#f87979',
+    path: 'M 55,225 L 155,275 L 135,305 L 130,350 L 75,340 L 45,290 Z',
+    badgeX: 95,
+    badgeY: 285,
+    textX: 95,
+    textY: 285,
+    hubs: [],
+  },
+  {
+    id: 'oti',
+    name: 'Oti Region',
+    shortName: 'OTI',
+    capital: 'DAMBAI',
+    color: '#6b3ba7',
+    path: 'M 360,285 L 420,240 L 405,370 L 390,415 L 340,400 L 365,395 L 390,325 L 340,300 Z',
+    badgeX: 375,
+    badgeY: 345,
+    textX: 375,
+    textY: 345,
+    hubs: [],
+  },
+  {
+    id: 'ahafo',
+    name: 'Ahafo Region',
+    shortName: 'AHAFO',
+    capital: 'GOASO',
+    color: '#4ebc45',
+    path: 'M 45,290 L 75,340 L 130,350 L 115,395 L 40,370 Z',
+    badgeX: 80,
+    badgeY: 350,
+    textX: 80,
+    textY: 350,
+    hubs: [],
+  },
+  {
+    id: 'eastern',
+    name: 'Eastern Region',
+    shortName: 'EASTERN',
+    capital: 'KOFORIDUA',
+    color: '#f28527',
+    path: 'M 265,470 L 365,395 L 340,400 L 375,475 L 305,535 L 235,505 Z',
+    badgeX: 300,
+    badgeY: 480,
+    textX: 300,
+    textY: 480,
+    hubs: [],
+  },
+  {
+    id: 'western',
+    name: 'Western Region',
+    shortName: 'WESTERN',
+    capital: 'SEKONDI TAKORADI',
+    color: '#00a4e4',
+    path: 'M 15,480 L 115,530 L 185,550 L 135,620 L 20,590 Z',
+    badgeX: 100,
+    badgeY: 555,
+    textX: 100,
+    textY: 555,
+    hubs: [],
+  },
+];
 
 /* ── Data ────────────────────────────────────────── */
 const heroSlides = [
@@ -39,15 +294,6 @@ const videos = [
   { id: '_P-fbzWqNy8', img: '/assets/images/blog-photo-1.png', title: 'OFWA × National Film Authority', desc: "Creating Wikipedia visibility for Ghana's actors and film industry professionals" },
 ];
 
-const hubTabs = [
-  { name: 'Accra Wiki Hub I', detail: 'Achimota, Greater Accra Region', tag: 'Flagship Hub', icon: '📍', map: 'https://maps.google.com/maps?q=Achimota+Accra+Ghana&output=embed&z=14', regionShort: 'Achimota, Accra' },
-  { name: 'Accra Wiki Hub II', detail: 'Abelemkpe, Greater Accra Region', tag: 'Active Hub', icon: '📍', map: 'https://maps.google.com/maps?q=Abelemkpe+Accra+Ghana&output=embed&z=14', regionShort: 'Abelemkpe, Accra' },
-  { name: 'Kumasi Wiki Hub', detail: 'Adum, Ashanti Region', tag: 'Training Centre', icon: '📍', map: 'https://maps.google.com/maps?q=Adum+Kumasi+Ghana&output=embed&z=13', regionShort: 'Adum, Kumasi' },
-  { name: 'Cape Coast Wiki Hub', detail: 'University of Cape Coast, Central Region', tag: 'University Club', icon: '🎓', map: 'https://maps.google.com/maps?q=University+of+Cape+Coast+Ghana&output=embed&z=14', regionShort: 'UCC, Cape Coast' },
-  { name: 'UDS Wiki Hub', detail: 'University for Development Studies, Northern Region', tag: 'University Hub', icon: '🎓', map: 'https://maps.google.com/maps?q=University+for+Development+Studies+Tamale+Ghana&output=embed&z=14', regionShort: 'Tamale, Northern Region' },
-  { name: 'WaleWale Wiki Hub', detail: 'WaleWale, North East Region', tag: 'Community Hub', icon: '🌿', map: 'https://maps.google.com/maps?q=Walewale+Ghana&output=embed&z=13', regionShort: 'North East Region' },
-  { name: 'Damango Wiki Hub', detail: 'Damango, Savannah Region', tag: 'New Hub', icon: '✨', map: 'https://maps.google.com/maps?q=Damango+Ghana&output=embed&z=13', regionShort: 'Savannah Region' },
-];
 
 const events = [
   { img: '/assets/images/hub-photo-4.png', date: 'Oct 21, 2025', title: 'AWMT Grand Hackathon Launch 2025', meta: '📍 Accra Hub · Oct 21 – Nov 23, 2025' },
@@ -63,11 +309,6 @@ const newsCards = [
   { img: '/assets/images/library-photo.png', cat: 'Announcement', title: 'OFWA Opens New Community Hub in Northern Ghana', meta: 'June 10, 2025 · 3 min read' },
 ];
 
-const countrySlides = [
-  { label: 'Nigeria', img: '/assets/images/nigeria.png', badges: [{ top: '22%', left: '18%' }, { top: '24%', left: '43%' }, { top: '24%', left: '79%' }, { top: '39%', left: '27%' }, { top: '46%', left: '42%' }, { top: '71%', left: '11%' }, { top: '74%', left: '43%' }] },
-  { label: 'Ghana', img: '/assets/images/ghana.png', badges: [{ top: '15%', left: '74%' }, { top: '25%', left: '52%' }, { top: '31%', left: '22%' }, { top: '41%', left: '57%' }, { top: '54%', left: '47%' }, { top: '72%', left: '67%' }, { top: '77%', left: '44%' }] },
-  { label: 'Togo', img: '/assets/images/togo.png', badges: [{ top: '11%', left: '50%' }, { top: '31%', left: '50%' }, { top: '52%', left: '50%' }, { top: '70%', left: '50%' }, { top: '88%', left: '50%' }] },
-];
 
 const missionPhotos = [
   '/assets/images/blog-photo-1.png',
@@ -117,19 +358,11 @@ const Home: React.FC = () => {
   // Video modal
   const [videoId, setVideoId] = useState<string | null>(null);
 
-  // Country map switcher
-  const [countryIdx, setCountryIdx] = useState(0);
-  const countryGoTo = useCallback((n: number) => {
-    setCountryIdx((n + countrySlides.length) % countrySlides.length);
-  }, []);
+  // Active region for Ghana map
+  const [activeRegionId, setActiveRegionId] = useState<string>('greater-accra');
+  const activeRegion = ghanaRegionsData.find(r => r.id === activeRegionId) || ghanaRegionsData[0];
+  const totalGhanaHubs = ghanaRegionsData.reduce((acc, r) => acc + r.hubs.length, 0);
 
-  // Hub map tabs
-  const [hubIdx, setHubIdx] = useState(0);
-  const [loadedMaps, setLoadedMaps] = useState<Set<number>>(new Set([0]));
-  const selectHub = (i: number) => {
-    setHubIdx(i);
-    setLoadedMaps(prev => new Set(prev).add(i));
-  };
 
   // Events horizontal scroll ref
   const eventsScrollRef = useRef<HTMLDivElement>(null);
@@ -305,72 +538,168 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* ░░ COUNTRY MAP SWITCHER ░░ */}
+      {/* ░░ GHANA HUBS & CLUBS MAP ░░ */}
       <section className={styles.cmsSection}>
         <div className="container">
-          <h2 className={`${styles.cmsTitle} reveal`}>Hubs and Clubs around you</h2>
-          <p className={`${styles.cmsSub} reveal d1`}>We are growing across West Africa</p>
-        </div>
-        <div className={styles.cmsStage}>
-          <button className={`${styles.cmsBtn} ${styles.cmsBtnPrev}`} onClick={() => countryGoTo(countryIdx - 1)} aria-label="Previous country"><ChevronLeft size={24} /></button>
-          <div className={styles.cmsSlides}>
-            {countrySlides.map((s, i) => (
-              <div key={i} className={`${styles.cmsSlide} ${i === countryIdx ? styles.cmsSlideActive : ''}`}>
-                <div className={styles.cmsMapBox}>
-                  <img src={s.img} alt={s.label} className={styles.cmsMapImg} />
-                  {s.badges.map((b, j) => (
-                    <span key={j} className={styles.cmsBadge} style={{ top: b.top, left: b.left }}>5</span>
-                  ))}
+          <div className={styles.cmsHeader}>
+            <span className="section-tag reveal">Hubs & Clubs Network</span>
+            <h2 className={`${styles.cmsTitle} reveal d1`}>Hubs & Clubs Around You</h2>
+            <p className={`${styles.cmsSub} reveal d2`}>
+              Explore our {totalGhanaHubs} active hubs and student clubs distributed across Ghana's regions. Hover or tap on any region to discover local communities.
+            </p>
+          </div>
+
+          <div className={`${styles.cmsContainer} reveal d3`}>
+            {/* Left: Interactive SVG Ghana Map */}
+            <div className={styles.cmsMapWrapper}>
+              <div className={styles.cmsMapCard}>
+                <svg viewBox="0 0 500 660" className={styles.ghanaSvgMap}>
+                  <defs>
+                    <filter id="shadowFilter" x="-10%" y="-10%" width="120%" height="120%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="0.4" />
+                    </filter>
+                  </defs>
+
+                  {/* Ghana Region Outlines with Color Fill */}
+                  <g className={styles.svgRegionsGroup}>
+                    {ghanaRegionsData.map((reg) => {
+                      const isActive = reg.id === activeRegionId;
+                      const hasHubs = reg.hubs.length > 0;
+                      return (
+                        <g
+                          key={reg.id}
+                          className={`${styles.svgRegionItem} ${isActive ? styles.svgRegionActive : ''} ${hasHubs ? styles.svgRegionHasHubs : ''}`}
+                          onMouseEnter={() => setActiveRegionId(reg.id)}
+                          onClick={() => setActiveRegionId(reg.id)}
+                        >
+                          <path
+                            d={reg.path}
+                            fill={reg.color}
+                            className={styles.svgRegionPath}
+                          />
+                          {/* Region Name and Capital Text */}
+                          <g className={styles.svgLabelGroup}>
+                            <text
+                              x={reg.textX}
+                              y={reg.textY - 3}
+                              textAnchor="middle"
+                              className={styles.svgRegionLabelName}
+                            >
+                              {reg.shortName}
+                            </text>
+                            <text
+                              x={reg.textX}
+                              y={reg.textY + 9}
+                              textAnchor="middle"
+                              className={styles.svgRegionLabelCapital}
+                            >
+                              ({reg.capital})
+                            </text>
+                          </g>
+                        </g>
+                      );
+                    })}
+                  </g>
+
+                  {/* Badges Overlay */}
+                  {ghanaRegionsData.map((reg) => {
+                    if (reg.hubs.length === 0) return null;
+                    const isActive = reg.id === activeRegionId;
+                    return (
+                      <g
+                        key={`badge-${reg.id}`}
+                        transform={`translate(${reg.badgeX}, ${reg.badgeY})`}
+                        className={`${styles.svgBadgeGroup} ${isActive ? styles.svgBadgeActive : ''}`}
+                        onMouseEnter={() => setActiveRegionId(reg.id)}
+                        onClick={() => setActiveRegionId(reg.id)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <circle r="15" className={styles.svgBadgePulse} />
+                        <circle r="12" className={styles.svgBadgeBg} />
+                        <text y="4" textAnchor="middle" className={styles.svgBadgeText}>
+                          {reg.hubs.length}
+                        </text>
+                      </g>
+                    );
+                  })}
+                </svg>
+
+                <div className={styles.mapLegend}>
+                  <div className={styles.legendItem}>
+                    <span className={styles.legendDotActive} /> Regions with Hubs
+                  </div>
+                  <div className={styles.legendItem}>
+                    <span className={styles.legendDotInactive} /> Expanding Regions
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right: Selected Region Hubs Details Card */}
+            <div className={styles.cmsDetailsWrapper}>
+              <div className={styles.cmsDetailsCard}>
+                <div className={styles.cmsDetailsHeader}>
+                  <div>
+                    <span className={styles.regionBadge}>{activeRegion.shortName}</span>
+                    <h3 className={styles.regionTitle}>{activeRegion.name}</h3>
+                  </div>
+                  <span className={styles.hubCountTag}>
+                    {activeRegion.hubs.length} {activeRegion.hubs.length === 1 ? 'Community' : 'Communities'}
+                  </span>
+                </div>
+
+                {activeRegion.hubs.length > 0 ? (
+                  <div className={styles.hubsList}>
+                    {activeRegion.hubs.map((hub, idx) => (
+                      <div key={idx} className={styles.hubCardItem}>
+                        <div className={styles.hubCardIcon}>
+                          <MapPin size={18} />
+                        </div>
+                        <div className={styles.hubCardContent}>
+                          <div className={styles.hubCardTop}>
+                            <h4 className={styles.hubCardName}>{hub.name}</h4>
+                            <span className={`${styles.hubTypePill} ${hub.type === 'Hub' ? styles.pillHub : styles.pillClub}`}>
+                              {hub.type}
+                            </span>
+                          </div>
+                          <p className={styles.hubCardLoc}>{hub.location}</p>
+                          <p className={styles.hubCardDetail}>{hub.detail}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className={styles.emptyRegionState}>
+                    <div className={styles.emptyIcon}>📍</div>
+                    <h4>No active hubs listed here yet</h4>
+                    <p>We are actively expanding into {activeRegion.shortName}. Interested in starting or hosting a Wiki Club in this region?</p>
+                    <Link to="/contact" className={styles.btnStartHub}>Start a Hub in {activeRegion.shortName} <ArrowRight size={14} /></Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-          <button className={`${styles.cmsBtn} ${styles.cmsBtnNext}`} onClick={() => countryGoTo(countryIdx + 1)} aria-label="Next country"><ChevronRight size={24} /></button>
-        </div>
-        <div className={styles.cmsFooter}>
-          <p className={styles.cmsCountryLabel}>{countrySlides[countryIdx].label}</p>
-          <div className={styles.cmsDots}>
-            {countrySlides.map((s, i) => (
-              <button key={i} className={`${styles.cmsDot} ${i === countryIdx ? styles.cmsDotActive : ''}`} onClick={() => setCountryIdx(i)} aria-label={s.label} />
-            ))}
+
+          {/* Quick Region Selector Pills */}
+          <div className={`${styles.regionPillsBar} reveal d4`}>
+            <span className={styles.pillsLabel}>Select Region:</span>
+            <div className={styles.pillsScroll}>
+              {ghanaRegionsData.map((reg) => (
+                <button
+                  key={reg.id}
+                  className={`${styles.regionPill} ${reg.id === activeRegionId ? styles.regionPillActive : ''} ${reg.hubs.length > 0 ? styles.regionPillHasHubs : ''}`}
+                  onClick={() => setActiveRegionId(reg.id)}
+                  onMouseEnter={() => setActiveRegionId(reg.id)}
+                >
+                  {reg.shortName}
+                  {reg.hubs.length > 0 && <span className={styles.pillCount}>{reg.hubs.length}</span>}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ░░ HUB MAP ░░ */}
-      <section className={styles.hubMapSection}>
-        <div className="container">
-          <div className={styles.hubMapHead}>
-            <p className="section-tag reveal">Our Network</p>
-            <h2 className="section-h reveal d1">Hubs & Clubs <span>Across Ghana</span></h2>
-          </div>
-          <div className={`${styles.hubMapLayout} reveal d2`}>
-            <div className={styles.hubTabs}>
-              {hubTabs.map((tab, i) => (
-                <button key={i} className={`${styles.hubTab} ${i === hubIdx ? styles.hubTabActive : ''}`} onClick={() => selectHub(i)}>
-                  <span className={styles.hubTabIcon}>{tab.icon}</span>
-                  <div>
-                    <p className={styles.hubTabName}>{tab.name.replace('Wiki Hub', 'Hub').replace('Wiki ', '')}</p>
-                    <p className={styles.hubTabRegion}>{tab.regionShort}</p>
-                  </div>
-                </button>
-              ))}
-            </div>
-            <div className={styles.hubMapStage}>
-              {hubTabs.map((tab, i) => (
-                <div key={i} className={`${styles.hubMapFrame} ${i === hubIdx ? styles.hubMapFrameActive : ''}`}>
-                  {(loadedMaps.has(i)) && <iframe src={tab.map} title={tab.name} loading="lazy" />}
-                </div>
-              ))}
-              <div className={styles.hubInfoBar}>
-                <p className={styles.hubInfoName}>{hubTabs[hubIdx].name}</p>
-                <p className={styles.hubInfoDetail}>{hubTabs[hubIdx].detail}</p>
-                <span className={styles.hubInfoTag}>📍 {hubTabs[hubIdx].tag}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ░░ EVENTS ░░ */}
       <section className={styles.eventsSection}>

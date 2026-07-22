@@ -248,8 +248,8 @@ const Contact: React.FC = () => {
                 <h3 className={styles.contactQuickH}>Quick Links</h3>
                 <div className={styles.contactQuickLinks}>
                   <Link className={styles.contactQuickBtn} to="/donate">♥ Donate</Link>
-                  <Link className={`${styles.contactQuickBtn} ${styles.contactQuickBtnGhost}`} to="/volunteer">Volunteer</Link>
-                  <Link className={`${styles.contactQuickBtn} ${styles.contactQuickBtnGhost}`} to="/partner">Partner With Us</Link>
+                  <Link className={styles.contactQuickBtn} to="/volunteer">Volunteer</Link>
+                  <Link className={`${styles.contactQuickBtn}`} to="/partner">Partner With Us</Link>
                 </div>
               </div>
             </div>
