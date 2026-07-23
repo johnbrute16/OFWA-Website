@@ -751,7 +751,7 @@ const Home: React.FC = () => {
       <section className={styles.partnersStrip}>
         <div className="container">
           <p className={styles.partnersLabel}>Trusted Partners & Supporters</p>
-          <img className={styles.partnersImg} src="/assets/images/partners-new.png" alt="Our partner organisations" />
+          <img className={styles.partnersImg} src="/assets/images/partners-strip.png" alt="Our partner organisations" />
         </div>
       </section>
     </>

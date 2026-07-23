@@ -804,12 +804,12 @@
 /* Outer Map Card */
 .mapCardOuter {
   width: 100%;
-  background: rgba(30, 41, 59, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* background: #fff; */
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
   border-radius: var(--r-xl, 24px);
   padding: 32px 24px;
   backdrop-filter: blur(16px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4); */
   position: relative;
   overflow: visible;
 }
