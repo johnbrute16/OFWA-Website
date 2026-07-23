@@ -594,14 +594,14 @@ const Home: React.FC = () => {
               </div>
 
               {/* Map Footer Legend */}
-              <div className={styles.mapLegend}>
+              {/* <div className={styles.mapLegend}>
                 <div className={styles.legendItem}>
                   <span className={styles.legendDotActive} /> Regions with Active Hubs & Clubs
                 </div>
                 <div className={styles.legendItem}>
                   <span className={styles.legendDotInactive} /> Expanding Regions
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Active Region Detailed Card Below Map */}
