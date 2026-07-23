@@ -29,9 +29,9 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(4,6,10,0.4) 0%,
-    rgba(4,6,10,0.6) 40%,
-    rgba(4,6,10,0.85) 100%);
+      rgba(4, 6, 10, 0.4) 0%,
+      rgba(4, 6, 10, 0.6) 40%,
+      rgba(4, 6, 10, 0.85) 100%);
   z-index: 1;
 }
 
@@ -70,7 +70,7 @@
 
 .heroSub {
   font-size: 1.15rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.55);
   max-width: 580px;
   line-height: 1.7;
   margin-bottom: 36px;
@@ -100,7 +100,7 @@
 
 .btnDonateHero:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(255,159,67,0.5);
+  box-shadow: 0 14px 40px rgba(255, 159, 67, 0.5);
 }
 
 .btnPlayHero {
@@ -124,8 +124,8 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,8 +144,8 @@
   z-index: 3;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--white);
   width: 48px;
   height: 48px;
@@ -163,8 +163,13 @@
   color: var(--black);
 }
 
-.heroArrowPrev { left: 24px; }
-.heroArrowNext { right: 24px; }
+.heroArrowPrev {
+  left: 24px;
+}
+
+.heroArrowNext {
+  right: 24px;
+}
 
 .heroDots {
   position: absolute;
@@ -180,8 +185,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s;
   cursor: pointer;
 }
@@ -198,8 +203,8 @@
   background: var(--dark2);
   padding: 16px 0;
   overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .marqueeTrack {
@@ -226,7 +231,7 @@
 .statsBand {
   background: var(--dark);
   padding: 64px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .statsGrid {
@@ -258,7 +263,10 @@
 }
 
 @media (max-width: 768px) {
-  .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
 }
 
 /* ===================== MISSION ===================== */
@@ -331,7 +339,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
   transition: all 0.3s;
 }
 
@@ -348,8 +356,8 @@
   transform: translateX(-50%);
   font-size: 0.78rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
-  background: rgba(0,0,0,0.4);
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
   padding: 6px 14px;
   border-radius: 100px;
@@ -364,8 +372,15 @@
 }
 
 @media (max-width: 900px) {
-  .missionInner { grid-template-columns: 1fr; gap: 40px; }
-  .photoStackWrap { max-width: 500px; margin: 0 auto; }
+  .missionInner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .photoStackWrap {
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
 
 /* ===================== GALLERY CAROUSEL ===================== */
@@ -434,7 +449,7 @@
 .galleryFeaturedOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
 }
 
 .galleryFeaturedInfo {
@@ -468,7 +483,7 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
   color: var(--white);
   font-size: 0.78rem;
@@ -506,7 +521,7 @@
 .galleryThumbOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   transition: opacity 0.2s;
 }
 
@@ -559,8 +574,13 @@
 }
 
 @media (max-width: 768px) {
-  .galleryCarousel { grid-template-columns: 1fr; }
-  .galleryThumbs { grid-template-columns: repeat(3, 1fr); }
+  .galleryCarousel {
+    grid-template-columns: 1fr;
+  }
+
+  .galleryThumbs {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* ===================== VIDEO ===================== */
@@ -608,7 +628,7 @@
 .videoCardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.1) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.1) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -617,7 +637,7 @@
 }
 
 .videoCard:hover .videoCardOverlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.15) 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.15) 100%);
 }
 
 .videoPlayBtn {
@@ -628,7 +648,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: rgba(255,159,67,0.9);
+  background: rgba(255, 159, 67, 0.9);
   color: var(--black);
   display: flex;
   align-items: center;
@@ -639,7 +659,7 @@
 
 .videoCard:hover .videoPlayBtn {
   transform: translate(-50%, -50%) scale(1.15);
-  box-shadow: 0 8px 30px rgba(255,159,67,0.6);
+  box-shadow: 0 8px 30px rgba(255, 159, 67, 0.6);
 }
 
 .videoCardTitle {
@@ -651,7 +671,7 @@
 }
 
 .videoCardMeta {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -662,7 +682,11 @@
 }
 
 @media (max-width: 768px) {
-  .videoGrid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .videoGrid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 }
 
 /* ===================== DONATE CTA ===================== */
@@ -678,7 +702,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 80%, rgba(255,159,67,0.1) 0%, transparent 65%);
+  background: radial-gradient(ellipse at 50% 80%, rgba(255, 159, 67, 0.1) 0%, transparent 65%);
 }
 
 .donateCtaTag {
@@ -701,7 +725,7 @@
 
 .donateCtaSub {
   font-size: 1.05rem;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   max-width: 540px;
   margin: 0 auto 32px;
   line-height: 1.7;
@@ -724,7 +748,7 @@
 
 .btnDonateBig:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 45px rgba(255,159,67,0.5);
+  box-shadow: 0 14px 45px rgba(255, 159, 67, 0.5);
 }
 
 /* ===================== GHANA HUBS & CLUBS MAP ===================== */
@@ -768,133 +792,364 @@
   line-height: 1.6;
 }
 
-.cmsContainer {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
+.cmsCenterLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 36px;
-  align-items: start;
-  margin-bottom: 40px;
+  max-width: 960px;
+  margin: 0 auto 40px;
 }
 
-/* Map Card */
-.cmsMapWrapper {
+/* Outer Map Card */
+.mapCardOuter {
   width: 100%;
-}
-
-.cmsMapCard {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(30, 41, 59, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--r-xl, 20px);
-  padding: 28px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  border-radius: var(--r-xl, 24px);
+  padding: 32px 24px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
   position: relative;
+  overflow: visible;
 }
 
-.ghanaSvgMap {
+.mapCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mapSubtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-400);
+}
+
+.activeRegionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--orange, #ff9f43);
+}
+
+/* Centered Map Image Container */
+.mapImageContainer {
+  position: relative;
   width: 100%;
-  max-height: 520px;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: visible;
+}
+
+.ghanaMapImage {
+  width: 100%;
   height: auto;
   display: block;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* SVG Regions */
-.svgRegionsGroup {
-  cursor: pointer;
-}
-
-.svgRegionItem {
-  transition: all 0.3s ease;
-}
-
-.svgRegionPath {
-  stroke: #1e293b;
-  stroke-width: 2.2px;
-  stroke-linejoin: round;
-  transition: all 0.3s ease;
-}
-
-.svgLabelGroup {
+/* Overlay Layer */
+.mapOverlayLayer {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-  user-select: none;
 }
 
-.svgRegionLabelName {
-  font-family: var(--font-heading);
-  font-size: 9px;
+/* Hotspots */
+.regionHotspot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.regionHotspot:hover,
+.hotspotActive,
+.hotspotHovered {
+  z-index: 9999 !important;
+}
+
+.hotspotPin {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  min-height: 26px;
+  padding: 2px;
+  border-radius: 100px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hotspotHasHubs .hotspotPin {
+  background: var(--orange-gradient, linear-gradient(135deg, #ff9f43, #ff5252));
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 159, 67, 0.7);
+}
+
+.hotspotActive .hotspotPin,
+.hotspotHovered .hotspotPin,
+.regionHotspot:hover .hotspotPin {
+  transform: scale(1.3);
+  border-color: #ffffff;
+  box-shadow: 0 0 24px rgba(255, 159, 67, 0.9);
+}
+
+.hotspotBadge {
+  font-size: 11px;
   font-weight: 900;
-  fill: #ffffff;
-  stroke: #000000;
-  stroke-width: 0.6px;
-  paint-order: stroke fill;
-  letter-spacing: 0.04em;
+  color: #0f172a;
+  font-family: var(--font-heading);
+  line-height: 1;
+  padding: 0 4px;
 }
 
-.svgRegionLabelCapital {
-  font-family: var(--font-body);
-  font-size: 7.5px;
-  font-weight: 800;
-  fill: rgba(255, 255, 255, 0.95);
-  stroke: #000000;
-  stroke-width: 0.5px;
-  paint-order: stroke fill;
-}
-
-.svgRegionItem:hover .svgRegionPath,
-.svgRegionActive .svgRegionPath {
-  stroke: #ffffff;
-  stroke-width: 3.5px;
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
-}
-
-.svgRegionHasHubs .svgRegionPath {
-  fill: rgba(255, 159, 67, 0.08);
-  stroke: rgba(255, 159, 67, 0.35);
-}
-
-/* SVG Badges */
-.svgBadgeGroup {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.svgBadgeGroup:hover,
-.svgBadgeActive {
-  transform: scale(1.3) !important;
-}
-
-.svgBadgePulse {
-  fill: rgba(255, 159, 67, 0.3);
+.hotspotPulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 100px;
+  border: 2px solid rgba(255, 159, 67, 0.6);
   animation: mapPulse 2s infinite ease-in-out;
-}
-
-.svgBadgeBg {
-  fill: var(--orange-gradient, linear-gradient(135deg, #ff9f43, #ff5252));
-  stroke: #ffffff;
-  stroke-width: 2px;
-}
-
-.svgBadgeText {
-  fill: #0f172a;
-  font-weight: 900;
-  font-size: 12px;
-  font-family: var(--font-heading);
   pointer-events: none;
 }
 
 @keyframes mapPulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.6); opacity: 0; }
-  100% { transform: scale(1); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
+.hotspotNameTag {
+  margin-top: 4px;
+  font-size: 9px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 1px 4px #000, 0 0 8px #000;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+.hotspotActive .hotspotNameTag,
+.hotspotHovered .hotspotNameTag,
+.regionHotspot:hover .hotspotNameTag {
+  opacity: 1;
+  color: var(--orange, #ff9f43);
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 159, 67, 0.4);
+}
+
+/* Hover Popup Card */
+.regionHoverPopup {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1.5px solid rgba(255, 159, 67, 0.5);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 159, 67, 0.3);
+  z-index: 9999;
+  animation: popupFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: auto;
+  text-align: left;
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.popupTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popupRegionTag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--orange, #ff9f43);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.popupRegionName {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--white);
+  margin: 2px 0;
+}
+
+.popupCapital {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  display: block;
+}
+
+.popupCountBadge {
+  background: rgba(255, 159, 67, 0.2);
+  color: var(--orange, #ff9f43);
+  border: 1px solid rgba(255, 159, 67, 0.4);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.popupHubsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.popupHubItem {
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.popupHubItem:hover {
+  background: rgba(255, 159, 67, 0.1);
+  border-color: rgba(255, 159, 67, 0.4);
+}
+
+.popupHubIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--orange-gradient, linear-gradient(135deg, #ff9f43, #ff5252));
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.popupHubInfo {
+  flex: 1;
+}
+
+.popupHubTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.popupHubName {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.popupHubLoc {
+  font-size: 0.78rem;
+  color: var(--gray-300);
+}
+
+.popupHubDetail {
+  font-size: 0.72rem;
+  color: var(--gray-400);
+}
+
+.popupEmptyState {
+  text-align: center;
+  padding: 12px 0 6px;
+}
+
+.popupEmptyState p {
+  font-size: 0.82rem;
+  color: var(--gray-300);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.popupStartBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange-gradient, linear-gradient(135deg, #ff9f43, #ff5252));
+  color: #000;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.popupStartBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 159, 67, 0.4);
+}
+
+/* Map Legend */
 .mapLegend {
   display: flex;
   justify-content: center;
   gap: 24px;
-  margin-top: 16px;
+  margin-top: 20px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 0.82rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
   color: var(--gray-400);
 }
 
@@ -909,31 +1164,25 @@
   height: 10px;
   border-radius: 50%;
   background: var(--orange, #ff9f43);
-  box-shadow: 0 0 8px rgba(255, 159, 67, 0.6);
+  box-shadow: 0 0 10px rgba(255, 159, 67, 0.7);
 }
 
 .legendDotInactive {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
 }
 
-/* Details Card */
-.cmsDetailsWrapper {
-  width: 100%;
-}
-
+/* Active Region Detailed Card */
 .cmsDetailsCard {
+  width: 100%;
   background: rgba(30, 41, 59, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--r-xl, 20px);
+  border-radius: var(--r-xl, 24px);
   padding: 32px;
   backdrop-filter: blur(16px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
 }
 
 .cmsDetailsHeader {
@@ -952,7 +1201,7 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--orange, #ff9f43);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .regionTitle {
@@ -960,6 +1209,12 @@
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--white);
+}
+
+.regionCapitalSub {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  margin-top: 2px;
 }
 
 .hubCountTag {
@@ -972,17 +1227,16 @@
   border-radius: 100px;
 }
 
-/* Hubs List */
-.hubsList {
-  display: flex;
-  flex-direction: column;
+.hubsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
 }
 
 .hubCardItem {
   display: flex;
   gap: 16px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--r-lg, 14px);
@@ -992,12 +1246,12 @@
 .hubCardItem:hover {
   background: rgba(255, 159, 67, 0.08);
   border-color: rgba(255, 159, 67, 0.3);
-  transform: translateX(4px);
+  transform: translateY(-2px);
 }
 
 .hubCardIcon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   background: var(--orange-gradient, linear-gradient(135deg, #ff9f43, #ff5252));
   color: #000;
@@ -1057,9 +1311,7 @@
   color: var(--gray-400);
 }
 
-/* Empty State */
 .emptyRegionState {
-  margin: auto;
   text-align: center;
   padding: 32px 20px;
 }
@@ -1080,7 +1332,7 @@
 .emptyRegionState p {
   font-size: 0.88rem;
   color: var(--gray-400);
-  max-width: 320px;
+  max-width: 380px;
   margin: 0 auto 20px;
   line-height: 1.5;
 }
@@ -1204,7 +1456,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   padding: 12px;
   max-height: 500px;
   overflow-y: auto;
@@ -1223,14 +1475,14 @@
 }
 
 .hubTab:hover {
-  background: rgba(255,255,255,0.04);
+  background: rgba(255, 255, 255, 0.04);
   color: var(--gray-200);
 }
 
 .hubTabActive {
-  background: rgba(255,159,67,0.08) !important;
+  background: rgba(255, 159, 67, 0.08) !important;
   color: var(--orange) !important;
-  border: 1px solid rgba(255,159,67,0.2);
+  border: 1px solid rgba(255, 159, 67, 0.2);
 }
 
 .hubTabIcon {
@@ -1279,7 +1531,7 @@
   left: 0;
   right: 0;
   padding: 16px 24px;
-  background: rgba(11,15,25,0.85);
+  background: rgba(11, 15, 25, 0.85);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -1301,7 +1553,7 @@
 }
 
 .hubInfoTag {
-  background: rgba(255,159,67,0.1);
+  background: rgba(255, 159, 67, 0.1);
   color: var(--orange);
   font-size: 0.78rem;
   font-weight: 700;
@@ -1310,9 +1562,22 @@
 }
 
 @media (max-width: 800px) {
-  .hubMapLayout { grid-template-columns: 1fr; }
-  .hubTabs { flex-direction: row; overflow-x: auto; max-height: none; padding: 8px; gap: 8px; }
-  .hubTab { white-space: nowrap; flex-shrink: 0; }
+  .hubMapLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .hubTabs {
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .hubTab {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 }
 
 /* ===================== EVENTS ===================== */
@@ -1333,12 +1598,15 @@
 .eventsScrollWrap {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .eventsScrollWrap::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .eventsContainer {
@@ -1457,7 +1725,7 @@
   display: block;
   text-align: center;
   padding: 14px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--orange) !important;
   font-weight: 700;
   font-size: 0.88rem;
@@ -1465,7 +1733,7 @@
 }
 
 .eventCardHCta:hover {
-  background: rgba(255,159,67,0.06);
+  background: rgba(255, 159, 67, 0.06);
 }
 
 /* ===================== NEWS ===================== */
@@ -1512,7 +1780,7 @@
 .newsCardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 50%);
 }
 
 .newsCardBody {
@@ -1521,7 +1789,7 @@
 
 .newsCardCat {
   display: inline-block;
-  background: rgba(255,159,67,0.1);
+  background: rgba(255, 159, 67, 0.1);
   color: var(--orange);
   font-size: 0.72rem;
   font-weight: 700;
@@ -1545,7 +1813,11 @@
 }
 
 @media (max-width: 768px) {
-  .newsGrid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .newsGrid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
 }
 
 /* ===================== TESTIMONIAL ===================== */
@@ -1612,20 +1884,32 @@
 }
 
 .partnersImg {
-  max-width: 100%;
-  filter: grayscale(1);
-  opacity: 0.6;
-  transition: all 0.4s;
+  max-width: 920px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+  transition: all 0.4s ease;
   margin: 0 auto;
+  display: block;
 }
 
 .partnersImg:hover {
-  filter: grayscale(0);
+  filter: grayscale(0%);
   opacity: 1;
+  transform: scale(1.015);
 }
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 768px) {
-  .heroArrow { display: none; }
-  .heroCtas { flex-direction: column; align-items: flex-start; }
+  .heroArrow {
+    display: none;
+  }
+
+  .heroCtas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

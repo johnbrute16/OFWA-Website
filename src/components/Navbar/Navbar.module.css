@@ -25,31 +25,37 @@
 }
 
 .navLogo {
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
-  gap: 14px;
+  /* justify-content: center; */
+  gap: 50px;
   flex-shrink: 0;
   cursor: pointer;
+  overflow: visible;
+  width: 25%;
 }
 
 .navLogo img {
-  width: 54px;
-  height: 54px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
+  transform: scale(1.6);
+  transform-origin: center;
   filter: brightness(0) invert(1);
   transition: transform 0.3s ease;
 }
 
 .navLogo:hover img {
-  transform: rotate(-10deg) scale(1.05);
+  transform: scale(1.7) rotate(-8deg);
 }
 
 .navLogoText {
   font-family: var(--font-heading);
   font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  line-height: 1.25;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
   color: var(--white);
   text-transform: uppercase;
 }
@@ -195,7 +201,7 @@
   .navDonate span {
     display: none;
   }
-  
+
   .navDonate {
     padding: 8px;
     border-radius: 50%;
@@ -205,12 +211,12 @@
   }
 
   .navLogo img {
-    width: 46px;
-    height: 46px;
+    width: 52px;
+    height: 52px;
   }
 
   .navLogoText {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -231,7 +237,7 @@
 }
 
 :global(body.light-theme) .navLogoText {
-  color: var(--white);
+  color: #04060a;
 }
 
 :global(body.light-theme) .menuLink {
@@ -261,4 +267,3 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
-
