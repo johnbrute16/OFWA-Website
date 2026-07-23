@@ -97,7 +97,7 @@
   gap: 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--white);
+  color: #e2e8f0;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
@@ -150,7 +150,7 @@
 
 .statLabel {
   font-size: 0.8rem;
-  color: var(--gray-400);
+  color: #e1e1e1;
   font-weight: 500;
   line-height: 1.3;
 }
@@ -178,14 +178,14 @@
   font-family: var(--font-heading);
   font-size: 2.3rem;
   font-weight: 800;
-  color: var(--gray-900);
+  color: #000000;
   line-height: 1.2;
   margin-bottom: 12px;
 }
 
 .splitSub {
   font-size: 1.02rem;
-  color: var(--gray-600);
+  color: #1a1a1a;
   margin-bottom: 36px;
   line-height: 1.65;
 }
@@ -238,7 +238,7 @@
   font-family: var(--font-heading);
   font-size: 1rem;
   font-weight: 800;
-  color: var(--gray-900);
+  color: #000000;
 }
 
 .benefitNum {
@@ -252,7 +252,7 @@
 }
 
 .benefitDesc {
-  color: var(--gray-600);
+  color: #1a1a1a;
   font-size: 0.88rem;
   line-height: 1.6;
 }
@@ -313,12 +313,13 @@
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 800;
+  color: #f4812e;
 
 }
 
 .imgBadge span {
   font-size: 0.8rem;
-  color: var(--gray-400);
+  color: #ffffff;
 }
 
 @media (max-width: 900px) {
@@ -326,6 +327,7 @@
     grid-template-columns: 1fr;
     gap: 48px;
   }
+
   .splitImgWrap {
     aspect-ratio: 16/10;
   }
@@ -348,12 +350,12 @@
   font-family: var(--font-heading);
   font-size: 2.3rem;
   font-weight: 800;
-  color: var(--white);
+  color: #ffffff;
   margin-bottom: 12px;
 }
 
 .modelsSub {
-  color: var(--gray-400);
+  color: #e1e1e1;
   font-size: 1.02rem;
   line-height: 1.6;
 }
@@ -419,13 +421,13 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.15rem;
-  color: var(--white);
+  color: #ffffff;
   line-height: 1.25;
 }
 
 .modelBody {
   font-size: 0.88rem;
-  color: var(--gray-400);
+  color: #e2e8f0;
   line-height: 1.65;
   margin-bottom: 24px;
   flex: 1;
@@ -445,7 +447,7 @@
   align-items: flex-start;
   gap: 8px;
   font-size: 0.83rem;
-  color: var(--gray-300);
+  color: #ffffff;
 }
 
 .checkIcon {
@@ -461,8 +463,8 @@
   gap: 8px;
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  color: #f4812e;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.88rem;
@@ -490,12 +492,12 @@
   font-family: var(--font-heading);
   font-size: 2.2rem;
   font-weight: 800;
-  color: var(--gray-900);
+  color: #000000;
   margin-bottom: 12px;
 }
 
 .trustedSub {
-  color: var(--gray-600);
+  color: #000000;
   font-size: 1.02rem;
   max-width: 540px;
   margin: 0 auto 40px;
@@ -547,7 +549,7 @@
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: #11023a;
   line-height: 1.6;
   margin-bottom: 20px;
 }
@@ -556,7 +558,7 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--gray-900);
+  color: #f4812e;
 }
 
 .quoteAuthor span {
@@ -589,12 +591,12 @@
   font-family: var(--font-heading);
   font-size: 2.3rem;
   font-weight: 800;
-  color: var(--white);
+  color: #ffffff;
   margin-bottom: 12px;
 }
 
 .formSub {
-  color: var(--gray-400);
+  color: #bababa;
   font-size: 1.02rem;
   line-height: 1.65;
   margin-bottom: 36px;
@@ -651,12 +653,12 @@
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--white);
+  color: #f4812e;
 }
 
 .stepDesc {
   font-size: 0.85rem;
-  color: var(--gray-400);
+  color: #ffffff;
   margin-top: 2px;
   line-height: 1.5;
 }
@@ -679,13 +681,19 @@
   margin-bottom: 8px;
 }
 
+.directContactHeader strong {
+  color: #f4812e;
+}
+
+
+
 .directIcon {
   color: var(--orange);
 }
 
 .directContactCard p {
   font-size: 0.85rem;
-  color: var(--gray-400);
+  color: #ffffff;
   margin-bottom: 8px;
 }
 
@@ -724,13 +732,13 @@
   font-family: var(--font-heading);
   font-size: 1.4rem;
   font-weight: 800;
-  color: var(--white);
+  color: #f4812e;
   margin-bottom: 6px;
 }
 
 .formCardSub {
   font-size: 0.88rem;
-  color: var(--gray-400);
+  color: #ffffff;
   margin-bottom: 28px;
 }
 
@@ -851,7 +859,7 @@
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
-  color: var(--white);
+  color: #ffffff;
   line-height: 1.1;
   margin-bottom: 20px;
 }
@@ -899,7 +907,7 @@
   gap: 8px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: var(--white);
+  color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;

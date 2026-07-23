@@ -229,7 +229,7 @@ const Partner: React.FC = () => {
 
             <div className={`${styles.splitImgCol} reveal d2`}>
               <div className={styles.splitImgWrap}>
-                <img src="/assets/images/partners-new.png" alt="OFWA Partners & Collaborators" />
+                <img src="/assets/images/image 1.jpg" alt="OFWA Partners & Collaborators" />
                 <div className={styles.imgBadge}>
                   <div className={styles.imgBadgeIcon}>
                     <Users size={18} />
